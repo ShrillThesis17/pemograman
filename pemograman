@@ -1,0 +1,44 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+double distance(double x1, double y1, double x2, double y2) {
+    double jarak = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+    return jarak;
+}
+
+double radius(double x1, double y1, double x2, double y2) {
+    double r = distance (x1,y1,x2,y2);
+    return r;
+}
+
+double circumference(double r){
+    const double phi=3.1416;
+    double keliling = phi*2*r;
+    return keliling;
+}
+
+double area(double r){
+    const double phi=3.1416;
+    double luas = phi*pow(r,2);
+    return luas;
+}
+
+int main () {
+    double x1,x2,y1,y2;
+    cout<<"masukkan center of circle x,y "<<endl;
+    cin>>x1>>y1;
+    cout<<"masukkan point on the circle x,y "<<endl;
+    cin>>x2>>y2;
+    
+    double r = radius(x1, y1, x2, y2);
+    double keliling = circumference(r);
+    double luas = area(r);
+
+    cout<<"circle's radius : "<<r<<endl;
+    cout<<"diameter : "<<r*2<<endl;
+    cout<<"circumference : "<<keliling<<endl;
+    cout<<"area : "<<luas<<endl;
+
+    return 0;
+}
