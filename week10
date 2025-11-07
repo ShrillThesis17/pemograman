@@ -1,0 +1,66 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct studentType{
+    string studentFName,studentLName;
+    int testScore;
+    char grade;
+};
+//fungsi data siswa
+void readData(studentType students[], int size){
+    for (int i=0;i<size;i++){
+        cout << "nama depan siswa ke-"<<i+1<<" : ";
+        cin >> students[i].studentFName;
+        cout << "nama belakang siswa ke-"<<i+1<<" : ";
+        cin >> students[i].studentLName;
+        cout<< "Nilai ujian (0-100) : ";
+        cin>> students[i].testScore;
+    }
+}
+//fungsi grade
+void assignGrades(studentType students[], int size){
+    for(int i=0;i<size;i++){
+        int n=students[i].testScore;
+        if(n>=90)
+            students[i].grade='A';
+        else if(n>=80)
+            students[i].grade='B';
+        else if(n>=70)
+            students[i].grade='C';
+        else if(n>=60)
+            students[i].grade='D';
+        else
+            students[i].grade='E';
+    }
+}
+//fungsi nilai tertinggi
+int NilaiTertinggi(studentType students[],int size){
+    int tertinggi=students[0].testScore;
+    for(int i=1;i<size;i++){
+        if(students[i].testScore>tertinggi)
+            tertinggi=students[i].testScore;
+    }
+    return tertinggi;
+}
+//fungsi menampilkan nilai tertinggi
+void printNilaiTertinggi(studentType students[], int size, int nilaiTertinggi){
+    for(int i = 0; i < size; i++){
+        if(students[i].testScore == nilaiTertinggi){
+            cout <<endl<< "Siswa dengan nilai tertinggi ("
+                 << students[i].testScore << ", "<< students[i].grade << "): " << students[i].studentFName << " " << students[i].studentLName << endl;
+        }
+    }
+}
+int main(){
+    const int SIZE=20;
+    studentType students[SIZE];
+    int n;
+    cout<<"masukkan jumlah siswa maks 20: ";
+    cin>>n;
+    readData(students,n);
+    assignGrades(students,n);
+    int tertinggi= NilaiTertinggi(students,n);
+    printNilaiTertinggi(students,n,tertinggi);
+    return 0;
+}
